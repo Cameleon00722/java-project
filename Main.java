@@ -1,8 +1,9 @@
 package Projetpoo;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
-public class Main { 
+public class Main {
 
     private class Etudiant {
         int numero_etu;
@@ -13,42 +14,13 @@ public class Main {
         byte annee_formation; //étant compris entre 1 et 5 pour limiter la ram usage
     }
 
-    private class Personnel {
-        int numero;
-        String nom;
-        String prenom;
-        String telephone;
-        String mail;
-        
-        int max-table = 10;  // 1 table = 8 places
-        int max-place = 80;
-        
-        Boolean validé = False;
-        string est-accompagné;
-        
-        while (validé == False){
-        Scanner accompagné = new Scanner(System.in);
-        est-accompagné = accompagné.next();
-        
-          if (est-accompagné.equals("oui") || est-accompagné.equals("OUI") || est-accompagné.equals("Oui") ){
-              est-accompagné = oui; 
-              validé = True;
-          }else if(est-accompagné.equals("non") || est-accompagné.equals("NON") || est-accompagné.equals("Non")){
-              est-accompagné = non; 
-              validé = True;
-          }
-        Systemout.println(nom + prenom + "+" + est-accompagné)
-        
-        
-    }
-
     private class Table {
         int numero_table;
         int place_libre; //8 places libres
 
         public void calcul_place() {
             if (place_libre == 0) {
-                numumero_table += 1;
+                numero_table += 1;
                 place_libre = 8;
             } else {
                 place_libre -= 1;
@@ -64,4 +36,32 @@ public class Main {
         }
 
     }
-}    
+    private class Personnel {
+        int numero;
+        String nom;
+        String prenom;
+        String telephone;
+        String mail;
+
+        int max_table = 10;  // 1 table = 8 places
+        int max_place = 80;
+
+        private boolean validation = false;
+        String est_accompagné;
+
+        public void valide(String[] args){}{
+            while(!validation){
+                Scanner accompagné = new Scanner(System.in);
+                est_accompagné = accompagné.next();
+                if (est_accompagné.equals("oui") || est_accompagné.equals("OUI") || est_accompagné.equals("Oui")) {
+                    est_accompagné = "oui";
+                    validation = true;
+                } else if(est_accompagné.equals("non") || est_accompagné.equals("NON") || est_accompagné.equals("Non")) {
+                    est_accompagné = "non";
+                    validation = true;
+                }
+                System.out.println(nom + prenom + "+" + est_accompagné);
+            }
+        }
+    }
+}
