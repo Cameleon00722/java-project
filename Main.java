@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Main {
 
-    private class etudiant {
+    private class Etudiant {
         int numero_etu;
         String nom;
         String prenom;
@@ -13,7 +13,7 @@ public class Main {
         byte annee_formation; //étant compris entre 1 et 5 pour limiter la ram usage
     }
 
-    private class personel {
+    private class Personel {
         int numero;
         String nom;
         String prenom;
@@ -21,7 +21,7 @@ public class Main {
         String mail;
     }
 
-    private class table {
+    private class Table {
         int num_table;
         int place_libre; //8 place libre
 
@@ -35,7 +35,7 @@ public class Main {
 
         }
 
-        private class reservation {
+        private class Teservation {
             LocalDate date;
             int num_table;
             int nbr_place;
