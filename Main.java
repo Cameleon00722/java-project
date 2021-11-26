@@ -10,7 +10,8 @@ public class Main {
         String prenom;
         String telephone;
         String mail;
-        byte annee_formation; //étant compris entre 1 et 5 pour limiter la ram usage
+        byte annee_formation;
+        char q; //étant compris entre 1 et 5 pour limiter la ram usage
     }
 
     private class Personel {
@@ -25,7 +26,7 @@ public class Main {
         int num_table;
         int place_libre; //8 place libre
 
-        public void clc_place() {
+        public void calcul_place() {
             if (place_libre == 0) {
                 num_table += 1;
                 place_libre = 8;
@@ -43,4 +44,4 @@ public class Main {
         }
 
     }
-}    
+}
