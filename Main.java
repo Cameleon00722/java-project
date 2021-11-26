@@ -35,7 +35,7 @@ public class Main {
 
         }
 
-        private class Teservation {
+        private class Reservation {
             LocalDate date;
             int num_table;
             int nbr_place;
