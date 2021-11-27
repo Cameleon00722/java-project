@@ -1,5 +1,6 @@
 package Projetpoo;
 
+import java.io.*;
 import java.time.LocalDate;
 import java.util.Scanner;
 
@@ -12,6 +13,31 @@ public class Main {
         String telephone;
         String mail;
         byte annee_formation; //étant compris entre 1 et 5 pour limiter la ram usage
+
+
+
+        public void reader(String args[])
+        {
+            String type = "student";
+            try
+            {
+                // Le fichier d'entrée
+                FileInputStream file = new FileInputStream("etudiant.txt");
+                Scanner scanner = new Scanner(file);
+
+                //renvoie true s'il y a une autre ligne à lire
+                while(scanner.hasNextLine() && scanner != type)
+                {
+                    System.out.println(scanner.nextLine());
+                }
+                scanner.close();
+            }
+            catch(IOException e)
+            {
+                e.printStackTrace();
+            }
+        }
+
     }
 
     private class Table {
@@ -28,11 +54,32 @@ public class Main {
 
         }
 
+
+
         private class Reservation {
             LocalDate date;
             int num_table;
             int nbr_place;
             double montant;
+
+            public boolean reserver_une_table(String nom_client){
+                //ci-dessous une fonction pour déterminer le tarif
+                String categorie_du_client="";
+                Scanner choix_tarif_selon_categorie=new Scanner(System.in);
+                boolean fin_choix=false;
+                System.out.println("Veuillez indiqué votre catégorie : ");
+                System.out.println("étudiant dernière année, étudiant ou personnel");
+                System.out.println("Tapez respectivement EDA,E ou P");
+                while(!fin_choix){
+                    if(choix_tarif_selon_categorie.next().equals("EDA") || choix_tarif_selon_categorie.next().equals("E") || choix_tarif_selon_categorie.next().equals("P")){
+                        categorie_du_client=choix_tarif_selon_categorie.next();
+                        fin_choix=true;
+                    }
+                }
+
+
+                return false;
+            }
         }
 
     }
@@ -64,4 +111,8 @@ public class Main {
             }
         }
     }
+
+
+
+
 }
