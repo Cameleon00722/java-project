@@ -1,6 +1,8 @@
 package projet;
 
-public class Participant {
+import java.io.Serializable;
+
+public class Participant implements Serializable {
     String nom;
     String prenom;
     String telephone;

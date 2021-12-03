@@ -16,7 +16,7 @@ public class Etudiant extends Participant implements Serializable,Comparable {
     @Override
     public int compareTo(Object o) {
         Etudiant e = (Etudiant) o;
-        return this.numero_etu-e.numero_etu;
+        return this.annee_formation-e.annee_formation;
     }
         /*public void reader(String args[])
         {

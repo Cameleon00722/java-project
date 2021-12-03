@@ -49,12 +49,13 @@ public class ServiceStockage implements IServiceStockage{
     public Object charger() throws IOException, ClassNotFoundException{
         Object o = null;
         try {
-
             ois = new ObjectInputStream(fis);
             o = ois.readObject();
+            ois.close();
+            fis.close();
         }
         catch (EOFException e ) {
-
+            System.out.println("erreur dans chargement "+e.getMessage());
         }
         return o;
     }

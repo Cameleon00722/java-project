@@ -11,13 +11,16 @@ public class Controleur {
 
     public Controleur(LocalDate date) throws IOException, ClassNotFoundException {
         ServiceStockage entrepot= new ServiceStockage();
+
         if(entrepot.charger()==null){
+            System.out.println("nouveau gala");
             monGala=new Gala(date);
+
         }else{
+            System.out.println("chargement nouveau objet");
             monGala=(Gala) entrepot.charger();
+
         }
-
-
     }
     public void ctlAjouterTable(Object table){
 

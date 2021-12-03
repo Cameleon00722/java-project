@@ -14,6 +14,9 @@ public class Table implements Serializable,Comparable {
         this.type=type;
     }
 
+    public void enleverUnePlaceLibre(){
+        numero_table-=1;
+    }
 
     @Override
     public String toString(){
