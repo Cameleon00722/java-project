@@ -14,7 +14,7 @@ public class ServiceStockage implements IServiceStockage{
      * @throws IOException Erreur liée aux entrées/sorties
      */
     public ServiceStockage() throws IOException {
-        f = new File("gala.ser");
+        f = new File("C:\\Quentin\\L2 Info\\POO\\Projet java\\gala.ser");
         f.createNewFile();
         fis = new FileInputStream(f);
 
@@ -46,16 +46,15 @@ public class ServiceStockage implements IServiceStockage{
      * @throws ClassNotFoundException La classe d'un objet sérialisé ne peut être trouvée.
      */
     @Override
-    public Object charger() throws IOException, ClassNotFoundException{
+    public Object charger(){
         Object o = null;
         try {
             ois = new ObjectInputStream(fis);
             o = ois.readObject();
-            ois.close();
-            fis.close();
-        }
-        catch (EOFException e ) {
-            System.out.println("erreur dans chargement "+e.getMessage());
+        } catch(EOFException e){
+            System.out.println("Fin de lecture du Gala enregistré");
+        } catch (IOException | ClassNotFoundException e ) {
+            System.out.println("erreur dans le chargement"+e);
         }
         return o;
     }

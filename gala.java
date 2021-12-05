@@ -1,12 +1,15 @@
 package projet;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.*;
 
 class Gala implements Serializable {
     private LocalDate dateDuGala;
-    private static final long serialVersionUID = 365769146812169873L;
+    public int version;
+
 
     //Constantes
     public static final int tarif1 = 10;
@@ -16,7 +19,8 @@ class Gala implements Serializable {
     public static final int nb_tables_personnels = 15;
 
     //Les collections
-    private Set<Table> lesTables = new TreeSet<>();
+    //private Set<Table> lesTables = new TreeSet<>();
+    private Table[] lesTables=new Table[25];
 
     private Set<Etudiant> tous_les_etudiants = new TreeSet<>();
     private Set<Etudiant> etudiants_inscrits = new TreeSet<>();
@@ -30,29 +34,86 @@ class Gala implements Serializable {
 
     //Constructeur
     public Gala(LocalDate date) {
-        //ici une méthode qui va lire les fichiers. Méthode de la classe IHM ?
-        //rempli les ensembles
-        //appelle des fonctions du modèle, fonction qui lit chauqe ligne du fichier puis ajoute la ligne à l'ensemble
+
+        //charger_tous_les_etudiants("C:\\Quentin\\L2 Info\\POO\\RessourcesProjetPOO2021_2022\\etudiants.txt");
+        charger_tous_les_personnels("C:\\Quentin\\L2 Info\\POO\\RessourcesProjetPOO2021_2022\\personnel.txt");
+
         for (int i = 0; i < 15; i++) {
-            ajouter_table(new Table(i, 8, "etudiant"));
+            lesTables[1]=new Table(i, 8, "étudiant");
         }
         for (int j = 15; j < 25; j++) {
-            ajouter_table(new Table(j, 8, "personnel"));
+            lesTables[j]=new Table(j, 8, "personnel");
         }
         this.dateDuGala=date;
     }
+    void charger_tous_les_etudiants(String chemin_du_fichier_txt) {
+        try{
+            File lectureEtudiants = new File(chemin_du_fichier_txt);
+            Scanner lecEtu= new Scanner(lectureEtudiants);
+            while(lecEtu.hasNextLine()){
+                String str=lecEtu.nextLine();
+                str=str.replaceAll( "\\s"," ");
 
-    //Methode liées aux tables
-    public boolean ajouter_table(Table table) {
-        return lesTables.add(table);
+                String[] words=str.split(" ");
+                String numero_etu=words[0];
+                String nom=words[1];
+                String prenom=words[2];
+                String tel=words[3];
+                String mail=words[4];
+                String annee=words[5];
+
+                Etudiant cobaye = new Etudiant(nom,prenom,tel,mail,Integer.parseInt(numero_etu),Byte.parseByte(annee));
+                tous_les_etudiants.add(cobaye);
+            }
+            lecEtu.close();
+
+        }catch(FileNotFoundException e){
+            System.out.println(e);
+        }
+
+    }
+    void charger_tous_les_personnels(String chemin_du_fichier_txt) {
+        try{
+            File lecturePersonnels = new File(chemin_du_fichier_txt);
+            Scanner lecPer = new Scanner(lecturePersonnels);
+            while(lecPer.hasNextLine()){
+
+                String str=lecPer.nextLine();
+                str=str.replaceAll( "\\s"," ");
+
+                String[] words=str.split(" ");
+                String numero_id=words[0];
+                String nom=words[1];
+                String prenom=words[2];
+                String tel=words[3];
+                String mail=words[4];
+
+                Personnel cobaye = new Personnel(nom,prenom,tel,mail,Integer.parseInt(numero_id));
+                tous_les_personnels.add(cobaye);
+            }
+            lecPer.close();
+        }catch(FileNotFoundException e){
+            System.out.println(e);
+        }
     }
 
+
+    //Methode liées aux tables
     public String afficher_tables() {
         String tout = "";
         for (Table t : lesTables) {
             tout += t.toString();
         }
         return tout;
+    }
+    //Méthode liéees aux réservation
+    public Reservation reserver_une_table(LocalDate date, int num_table, int nbr_place, double montant,Participant participant,int numero_de_table,int nb_accompagnant){
+        Reservation reservation = new Reservation(date,num_table,nbr_place,montant);
+        lesTables[numero_de_table-1].inscrire_nom(participant.getNom());
+        for(int i=0;i<nb_accompagnant;i++){
+            lesTables[numero_de_table-1].inscrire_nom("+accompagnant");
+        }
+        return reservation;
     }
 
     //Ajout des etudiants dans les collections

@@ -11,6 +11,9 @@ public class Participant implements Serializable {
 
     public Participant() {
     }
+    public String getNom(){
+        return nom;
+    }
 
     public Participant(String nom, String prenom, String telephone, String mail) {
         this.nom = nom;

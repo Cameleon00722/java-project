@@ -6,13 +6,18 @@ import java.util.Scanner;
 public class Personnel extends Participant implements Serializable, Comparable {
 
     int numero;
-    int max_table = 10;  // 1 table = 8 places
-    int max_place = 80;
+    //int max_table = 10;   1 table = 8 places
+    //int max_place = 80;
+    //String est_accompagné;
+    //private boolean validation = false;
 
-    private boolean validation = false;
-    String est_accompagné;
+    public Personnel(String nom, String prenom, String telephone, String mail, int numero) {
+        super(nom, prenom, telephone, mail);
+        this.numero = numero;
+    }
 
-    public void valide(String[] args){}{
+
+    /*public void valide(String[] args){}{
         while(!validation){
             Scanner accompagné = new Scanner(System.in);
             est_accompagné = accompagné.next();
@@ -25,7 +30,7 @@ public class Personnel extends Participant implements Serializable, Comparable {
             }
             System.out.println(super.nom + super.prenom + "+" + est_accompagné);
         }
-    }
+    }*/
 
     @Override
     public int compareTo(Object o) {

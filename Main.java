@@ -8,14 +8,8 @@ public class Main {
 
     public static void main(String[] args) {
 	    try{
-            System.out.println("debut");
             Controleur monControleur=new Controleur(LocalDate.now());
-            System.out.println("on passe à la saisie");
-            Scanner sc=new Scanner(System.in);
-            if(sc.next().equals("sortie")){
-                monControleur.quitter();
-            }
-
+            monControleur.quitter();
         }
         catch(IOException e){
             System.out.println("erreur1"+e.getMessage());
