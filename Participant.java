@@ -8,6 +8,8 @@ public class Participant implements Serializable {
     String telephone;
     String mail;
     Reservation reservation;
+    //ajouter un champ nombre accompagnant
+    //qui se déduit du nombre de place dans la réservation
 
     public Participant() {
     }
