@@ -4,6 +4,7 @@ import java.util.*;
 
 public class PlanTable {
     Map<Integer, String> planTable;
+    //Donc le map est de taille 8 comme la taille maximale d'une table
 
     public PlanTable() {
         planTable = new HashMap<>();
