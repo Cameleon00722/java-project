@@ -33,6 +33,29 @@ public class Reservation implements Serializable,Comparable {
     public int compareTo(Object o) {
         return 0;
     }
+    public void supprimer_reservation(Participant participant){
+        int table_reservee = participant.reservation.num_table;
+        if (participant.est_accompagné()) {
+            for (String s : PlanTable.plan(table_reservee)){ // parcourir plan de table
+                for(String acc : participant.accompagnant){
+                    if (s.equals(participant.prenom)){ // si on trouve le participant
+                        PlanTable.supprimer(table_reservee, participant.prenom);
+                    }
+                    else if(s.equals(acc)){ // si on trouve un accompagnant du participant
+                        PlanTable.supprimer(table_reservee, acc);
+                    }
+                }
+            }
+        }
+        else {
+            for (String s : PlanTable.plan(table_reservee)) {//parcourir les elements de la table
+                if (s.equals(participant.prenom)) { //si elemnts = particpant ou accompagnateur du participant
+                    PlanTable.supprimer(table_reservee, participant.prenom); //supprimer de la table
+                }
+            }
+        }
+        System.out.println("Réservation supprimée");
+    }
 }
 
 
