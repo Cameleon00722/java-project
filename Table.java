@@ -63,4 +63,65 @@ public class Table implements Serializable,Comparable {
         Table t=(Table)o;
         return this.numero_table-t.numero_table;
     }
+    /*
+    public boolean ajouter_participant(Participant invited){
+        if (place_libre > 0){
+            place_libre -= 1;
+            if(invited instanceof Etudiant) {
+                return invite.add(String.valueOf(((Etudiant) invited).numero_etu));
+            }
+            else{
+                return invite.add(String.valueOf(((Personnel) invited).numero));
+            }
+        }
+        else{
+            System.out.println("Table remplie");
+            return false;
+        }
+    }
+
+    public boolean ajouter(String invit){ //pour accompagnant
+        if (place_libre > 0){
+            place_libre -= 1;
+            return invite.add(invit);
+        }
+        else{
+            System.out.println("Table remplie");
+            return false;
+        }
+    }
+    /**
+     * @param invited - l'élément que l'on veut supprimer
+     * @throws Exception - si le paramètre n'est pas inscrit à la table
+     */
+    /*
+    public boolean supprimerParticpant(Participant invited){
+        if(invited instanceof Etudiant) {
+            if (invite.contains(String.valueOf(((Etudiant) invited).numero_etu))) {
+                return invite.remove(String.valueOf(((Etudiant) invited).numero_etu));
+            } else {
+                throw new IllegalArgumentException("Le participant doit être inscrit à la table");
+            }
+        }
+        else{
+                if (invite.contains(String.valueOf(((Personnel) invited).numero))) {
+                    return  invite.remove(String.valueOf(((Personnel) invited).numero));
+                }
+                else{
+                    throw new IllegalArgumentException("Le participant doit être inscrit à la table");
+                }
+            }
+
+        }
+
+
+    public boolean supprimer(String invited){ //pour accompagnant
+        if (invite.contains(invited)) {
+            return invite.remove(invited);
+        }
+        else{
+            throw new IllegalArgumentException("Le participant doit être inscrit à la table");
+        }
+    }
+    */
 }
