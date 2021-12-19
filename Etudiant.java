@@ -4,8 +4,17 @@ import java.io.Serializable;
 
 public class Etudiant extends Participant implements Serializable,Comparable {
 
-    int numero_etu;
-    byte annee_formation; //étant compris entre 1 et 5 pour limiter la ram usage
+    private int numero_etu;
+    private byte annee_formation; //étant compris entre 1 et 5 pour limiter la ram usage
+
+    //Getters et setters
+    public byte getAnnee_formation(){
+        return annee_formation;
+    }
+
+    public int getNumero_etu() {
+        return numero_etu;
+    }
 
     public Etudiant(String nom, String prenom, String telephone, String mail, int numero_etu, byte annee_formation) {
         super(nom, prenom, telephone, mail);

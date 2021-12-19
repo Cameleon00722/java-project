@@ -3,18 +3,22 @@ package projet;
 import java.io.Serializable;
 
 public class Participant implements Serializable {
-    String nom;
-    String prenom;
-    String telephone;
-    String mail;
-    Reservation reservation;
-    //ajouter un champ nombre accompagnant
-    //qui se déduit du nombre de place dans la réservation
+    private String nom;
+    private String prenom;
+    private String telephone;
+    private String mail;
+    private Reservation reservation;
 
-    public Participant() {
-    }
+    //getters and setters
     public String getNom(){
         return nom;
+    }
+
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public Participant() {
     }
 
     public Participant(String nom, String prenom, String telephone, String mail) {
@@ -22,9 +26,11 @@ public class Participant implements Serializable {
         this.prenom = prenom;
         this.telephone = telephone;
         this.mail = mail;
+        this.reservation=null;
     }
 
     public void associer_reservation(Reservation reservation){
         this.reservation=reservation;
     }
+    public void supprimer_reservation() { this.reservation=null;}
 }

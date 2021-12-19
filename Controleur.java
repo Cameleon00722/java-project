@@ -20,9 +20,9 @@ public class Controleur {
             System.out.println("chargement d'un ancien gala");
         }
     }
-    public void ctlAjouterTable(Object table){
+    public void ctlReservation(){
 
-
+        monGala.effectuer_une_reservation(LocalDate.now(),2, 2,new Participant());
     }
     public void quitter() throws IOException {
         ServiceStockage entrepot2= new ServiceStockage();

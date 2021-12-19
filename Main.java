@@ -2,13 +2,17 @@ package projet;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
 	    try{
+
+
             Controleur monControleur=new Controleur(LocalDate.now());
+            monControleur.ctlReservation();
             monControleur.quitter();
         }
         catch(IOException e){

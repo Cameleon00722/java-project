@@ -6,10 +6,11 @@ import java.util.Scanner;
 
 public class Reservation implements Serializable,Comparable {
 
-    LocalDate date;
-    int numero_de_table;
-    int nombre_de_place;
-    double montant;
+    private LocalDate date;
+    private int numero_de_table;
+    private int nombre_de_place;
+    private double montant;
+    private int nombre_accompagnateur;
 
     //Constructeurs
     public Reservation(LocalDate date, int num_table, int nbr_place, double montant) {
@@ -17,6 +18,24 @@ public class Reservation implements Serializable,Comparable {
         this.numero_de_table = num_table;
         this.nombre_de_place = nbr_place;
         this.montant = montant;
+        this.nombre_accompagnateur=determiner_nb_accompagnateur(nbr_place);
+    }
+
+    //getters et setters
+    public int getNombre_accompagnateur(){
+        return nombre_accompagnateur;
+    }
+    public int getNumero_de_table(){
+        return numero_de_table;
+    }
+
+    int determiner_nb_accompagnateur(int nb_place){
+        int nb_accompagnateur=0;
+        if(nb_place==1){
+            return nb_accompagnateur;
+        }else{
+            return nb_place-1;
+        }
     }
 
 
@@ -33,29 +52,8 @@ public class Reservation implements Serializable,Comparable {
     public int compareTo(Object o) {
         return 0;
     }
-    public void supprimer_reservation(Participant participant){
-        int table_reservee = participant.reservation.num_table;
-        if (participant.est_accompagné()) {
-            for (String s : PlanTable.plan(table_reservee)){ // parcourir plan de table
-                for(String acc : participant.accompagnant){
-                    if (s.equals(participant.prenom)){ // si on trouve le participant
-                        PlanTable.supprimer(table_reservee, participant.prenom);
-                    }
-                    else if(s.equals(acc)){ // si on trouve un accompagnant du participant
-                        PlanTable.supprimer(table_reservee, acc);
-                    }
-                }
-            }
-        }
-        else {
-            for (String s : PlanTable.plan(table_reservee)) {//parcourir les elements de la table
-                if (s.equals(participant.prenom)) { //si elemnts = particpant ou accompagnateur du participant
-                    PlanTable.supprimer(table_reservee, participant.prenom); //supprimer de la table
-                }
-            }
-        }
-        System.out.println("Réservation supprimée");
-    }
+
+
 }
 
 
