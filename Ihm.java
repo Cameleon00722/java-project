@@ -57,8 +57,8 @@ class GtGala implements ActionListener
 
 
     // Définir les boutons
-    JButton btn1 = new JButton("inscription");
-    JButton btn2 = new JButton("désincription");
+    JButton btn1 = new JButton("  inscription  ");
+    JButton btn2 = new JButton("  désincription  ");
 
     public GtGala() {
 
@@ -105,8 +105,8 @@ class choixtype implements ActionListener
 
 
     // Définir les boutons
-    JButton btn1 = new JButton("etudiant");
-    JButton btn2 = new JButton("personel");
+    JButton btn1 = new JButton("  etudiant  ");
+    JButton btn2 = new JButton("  personel  ");
 
     public choixtype() {
 
@@ -139,21 +139,72 @@ class choixtype implements ActionListener
     public void actionPerformed(ActionEvent e) {
         if(e.getSource()==btn1){
             frame.setVisible(false);
-            verification fen4 = new verification();
+            verificationEtu fen4 = new verificationEtu();
         }
         if(e.getSource()==btn2){
-            System.out.println("Bouton 2");
+            frame.setVisible(false);
+            verificationPer fen4 = new verificationPer();
         }
     }
 }
 
-class verification{
+class verificationEtu{
 
-    public verification() {
-        Scanner id = new Scanner(System.in);
-        int day = id.nextInt();
-        reservation fen5 = new reservation();
+    public verificationEtu() {
+        try {
+            boolean valide = false;
 
+            while (!valide){
+                System.out.print("Entré votre numéro étudiant : ");
+                Scanner id = new Scanner(System.in);
+                int id_etu = id.nextInt();
+
+                int count = 0;
+                while (id_etu != 0) {
+                    id_etu  = id_etu  / 10;
+                    ++count;
+                }
+                if (count == 7){
+                    valide = true;
+                }else{
+                    System.out.println("Numéro d'étudiant invalide");
+                }
+            }
+            reservation fen5 = new reservation();
+        }
+        catch(Exception e){
+            System.out.println("La valeur entrée n'était pas un chiffre");
+        }
+    }
+}
+
+class verificationPer{
+
+    public verificationPer() {
+        try {
+            boolean valide = false;
+
+            while (!valide){
+                System.out.print("Entré votre numéro de personel : ");
+                Scanner id = new Scanner(System.in);
+                int id_per = id.nextInt();
+
+                int count = 0;
+                while (id_per != 0) {
+                    id_per  = id_per  / 10;
+                    ++count;
+                }
+                if (count == 7){
+                    valide = true;
+                }else{
+                    System.out.println("Numéro d'étudiant invalide");
+                }
+            }
+            reservation fen5 = new reservation();
+        }
+        catch(Exception e){
+            System.out.println("La valeur entrée n'était pas un chiffre");
+        }
     }
 }
 
@@ -166,7 +217,7 @@ class reservation implements ActionListener
 
     // Définir les boutons
     JButton btn1 = new JButton("Gérer les places du dîner");
-    JButton btn2 = new JButton("Se désinscrire");
+    JButton btn2 = new JButton("  Se désinscrire"  );
 
     public reservation() {
 
