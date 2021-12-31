@@ -1,5 +1,7 @@
 package projet;
 
+import jdk.swing.interop.SwingInterOpUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
@@ -16,7 +18,7 @@ class Gala implements Serializable {
     public static final int tarif2 = 15;
     public static final int tarif3 = 20;
     public static final int nb_tables_etudiants = 15;
-    public static final int nb_tables_personnels = 15;
+    public static final int nb_tables_personnels = 10;
 
     //Les collections
     private Set<Table> lesTables = new TreeSet<>(new Trie_table());
@@ -39,10 +41,10 @@ class Gala implements Serializable {
         charger_tous_les_etudiants("C:\\Quentin\\L2 Info\\POO\\RessourcesProjetPOO2021_2022\\etudiants.txt");
         charger_tous_les_personnels("C:\\Quentin\\L2 Info\\POO\\RessourcesProjetPOO2021_2022\\personnel.txt");
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 1; i < nb_tables_etudiants+1; i++) {
             lesTables.add(new Table(i, 8, "étudiant"));
         }
-        for (int j = 15; j < 25; j++) {
+        for (int j = nb_tables_etudiants+1; j < nb_tables_etudiants+nb_tables_personnels+1; j++) {
             lesTables.add(new Table(j, 8, "personnel"));
         }
         this.dateDuGala=date;
@@ -53,6 +55,7 @@ class Gala implements Serializable {
             Scanner lecEtu= new Scanner(lectureEtudiants);
             while(lecEtu.hasNextLine()){
                 String str=lecEtu.nextLine();
+                System.out.println("brut :"+str);
                 str=str.replaceAll( "\\s"," ");
 
                 String[] words=str.split(" ");
@@ -120,13 +123,91 @@ class Gala implements Serializable {
     }
 
 
-    //Methode liées aux tables
+    //Methode pour afficher les ensembles
     public String afficher_tables() {
         String tout = "";
         for (Table t : lesTables) {
             tout += t.toString();
         }
         return tout;
+    }
+    public void afficher_le_gala(){
+        System.out.println("Pour visualiser tous les etudiants : tapez 1");
+        System.out.println("Pour visualiser tous les etudiants inscrits : tapez 2");
+        System.out.println("Pour visualiser tous les etudiants en attente: tapez 3");
+        System.out.println("Pour visualiser tous les etudiants à confirmer : tapez 4");
+        System.out.println("Pour visualiser tous les etudiants avec réservation: tapez 5");
+        System.out.println("Pour visualiser tous les personnels : tapez 6");
+        System.out.println("Pour visualiser tous les personnels inscrits: tapez 7");
+        System.out.println("Pour visualiser tous les personnels avec réservation: tapez 8");
+
+        Scanner choix_ensemble= new Scanner(System.in);
+        int leChoix=choix_ensemble.nextInt();
+        boolean choix_correct=false;
+        while(!choix_correct){
+            if(leChoix==1){
+                for (Etudiant e : tous_les_etudiants) {
+                    String tout = "";
+                    tout += e.toString();
+                    System.out.println(tout);
+                }
+                choix_correct=true;
+            }else if(leChoix==2){
+                for (Etudiant e : etudiants_inscrits) {
+                    String tout = "";
+                    tout += e.toString();
+                    System.out.println(tout);
+                }
+                choix_correct=true;
+            }else if(leChoix==3){
+                for (Etudiant e : etudiants_en_attente) {
+                    String tout = "";
+                    tout += e.toString();
+                    System.out.println(tout);
+                }
+                choix_correct=true;
+            }else if(leChoix==4){
+                for (Etudiant e : etudiants_a_confirmer) {
+                    String tout = "";
+                    tout += e.toString();
+                    System.out.println(tout);
+                }
+                choix_correct=true;
+            }else if(leChoix==5){
+                for (Etudiant e : etudiants_avec_reservation) {
+                    String tout = "";
+                    tout += e.toString();
+                    System.out.println(tout);
+                }
+                choix_correct=true;
+            }else if(leChoix==6){
+                for (Personnel p : tous_les_personnels) {
+                    String tout = "";
+                    tout += p.toString();
+                    System.out.println(tout);
+                }
+                choix_correct=true;
+            }else if(leChoix==7){
+                for (Personnel p : personnels_inscrits) {
+                    String tout = "";
+                    tout += p.toString();
+                    System.out.println(tout);
+                }
+                choix_correct=true;
+            }else if(leChoix==8){
+                for (Personnel p : personnels_avec_reservation) {
+                    String tout = "";
+                    tout += p.toString();
+                    System.out.println(tout);
+                }
+                choix_correct=true;
+            }else{
+                System.out.println("Mauvaise saisie");
+            }
+        }
+
+
+
     }
 
     //Tests de présence dans les ensembles
@@ -305,6 +386,8 @@ class Gala implements Serializable {
         }
         return nombre_place;
     }
+
+    //methode renvoyer la liste des etudiants
 
     //Ajout des étudiants dans les collections
     boolean ajouter_etudiant(Etudiant etu){
