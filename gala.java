@@ -443,6 +443,17 @@ class Gala implements Serializable {
     boolean supprimer_personnel_avec_reservation(Personnel personnel){
         return personnels_avec_reservation.remove(personnel);
     }
+    
+    public static Etudiant rechercheetunum(int numeroetu) {
+        Iterator<Etudiant> iterator = tous_les_etudiants.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().getNumero_etu() == numeroetu) {
+                return iterator.next();
+            }
+
+        }
+        return null;
+    }
 
 
 
